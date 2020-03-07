@@ -33,7 +33,7 @@
 発話に対する応答文は特にカスタマイズせずに取得ができますが、特定の発話に対する応答を自由に設定することができます。Chaplus APIでは、カスタマイズしたい発話をJson形式で指定します。
 
 ```json
-utterancePairs:[
+"utterancePairs":[
     {
         "utterance":"おはよう！",
         "response":"今日も1日頑張って！"
@@ -55,7 +55,7 @@ APIの応答に含めるべきでないワードがある場合は、NGワード
 Chaplus APIでは、応答するAPIの話者を「エージェント(Agent)」と呼び、エージェントの情報はAPIリクエスト時に設定が可能です。現在設定が可能な項目は下記の通りです。
 
 ```json
-agentState:{
+"agentState":{
     "agentName":"エージェントの名前",
     "age":"エージェントの年齢",
     "tone":"エージェントの口調 (normal or kansai)"
@@ -279,4 +279,5 @@ Kagome is licensed under the Apache License v2.0 and uses the MeCab-IPADIC, UniD
 
 ## 問い合わせ
 お問い合わせは下記のメールアドレスまでお寄せください。 \
+
 chaplus.ai@gmail.com
