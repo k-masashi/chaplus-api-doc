@@ -71,16 +71,15 @@ APIから返される応答にエージェントの名前を含む場合は、�
 
 ## 1. 登録
 
-[登録ページ](https://www.chaplus.jp) \
-上記ページより利用規約の確認と同意の上、APIの利用登録を実施します。
+[登録ページ](https://www.chaplus.jp) より利用規約の確認と同意の上、APIの利用登録を実施します。
 
 ## 2. WEB API 仕様
 
 ### リクエスト
 
 #### エンドポイント
-https://www.chaplus.jp/v1/chat?apikey=APIKEY \
-\
+https://www.chaplus.jp/v1/chat?apikey=APIKEY 
+
 API登録時に取得したAPIKEYをクエリパラメータに付与します。
 
 
@@ -93,6 +92,7 @@ API登録時に取得したAPIKEYをクエリパラメータに付与します�
 Jsonでリクエストを記述します。
 
 ##### リクエストパラメータ
+
 |  パラメータ  |  説明  |  型  |  必須  |
 | ---- | ---- | ---- | ---- |
 |  utterance  |  ユーザの発話  | String | ◯ |
@@ -164,6 +164,7 @@ curl -v -H "Content-Type: application/json" -X POST -d '{"utterance":"調子は�
 
 
 ### ステータスコード
+
 |  ステータス  |  説明  |
 | ---- | ---- |
 |  200  |  リクエスト成功  |
@@ -183,6 +184,7 @@ curl -v -H "Content-Type: application/json" -X POST -d '{"utterance":"調子は�
 
 ### レスポンス
 #### Json
+
 |  Key  |  説明  |  型  |
 | ---- | ---- | ---- |
 |  bestResponse  |  ユーザ発話に対する最もScoreの高い応答  |  responseオブジェクト  |
@@ -278,6 +280,6 @@ Kagome is licensed under the Apache License v2.0 and uses the MeCab-IPADIC, UniD
 ```
 
 ## 問い合わせ
-お問い合わせは下記のメールアドレスまでお寄せください。 \
+お問い合わせは下記のメールアドレスまでお寄せください。
 
 chaplus.ai@gmail.com
