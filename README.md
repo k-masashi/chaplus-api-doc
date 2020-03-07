@@ -84,6 +84,7 @@ API登録時に取得したAPIKEYをクエリパラメータに付与します�
 
 
 #### リクエストヘッダー
+
 |  Key  |  Value  |
 | ---- | ---- |
 |  Content-Type  |  application/json  |
@@ -112,6 +113,7 @@ agentStateでは下記を指定。応答に含まれる置き換え文字が設�
 
 ##### addition
 additionでは応答をカスタマイズする設定が可能です。
+
 |  addition  |  説明  | 型 |
 | ---- | ---- | ---- |
 |  options  |  ユーザに示す発話候補  | String配列 |
