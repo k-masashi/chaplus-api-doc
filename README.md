@@ -161,7 +161,7 @@ utterancePairで指定された発話ペアは、Chaplus APIが行う応答と�
 
 curl サンプル
 ```
-curl -v -H "Content-Type: application/json" -X POST -d '{"utterance":"調子はどう？","username":"太郎","agentState":{"agentName":"エージェント","tone":"kansai", "age":"20歳"},"addition":{"options":["疲れた","肩凝った"],"utterancePairs":[{"utterance":"肩凝った","response":"適度に運動しないとね"}]}}' http://localhost:8888/v1/chat\?apikey\=<APIKEY>
+curl -v -H "Content-Type: application/json" -X POST -d '{"utterance":"調子はどう？","username":"太郎","agentState":{"agentName":"エージェント","tone":"kansai", "age":"20歳"},"addition":{"options":["疲れた","肩凝った"],"utterancePairs":[{"utterance":"肩凝った","response":"適度に運動しないとね"}]}}' https://www.chaplus.jp/v1/chat\?apikey\=<APIKEY>
 ```
 
 
