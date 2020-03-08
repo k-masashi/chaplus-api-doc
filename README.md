@@ -76,6 +76,7 @@ APIから返される応答にエージェントの名前を含む場合は、�
 ## 2. WEB API 仕様
 
 ### リクエスト
+METHOD: POST
 
 #### エンドポイント
 https://www.chaplus.jp/v1/chat?apikey=APIKEY 
