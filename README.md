@@ -109,7 +109,7 @@ agentStateでは下記を指定。応答に含まれる置き換え文字が設�
 |  agentState  |  説明  | 置き換え記号 | 型 |
 | ---- | ---- | ---- | ---- |
 |  agentName  |  エージェントの名前  | <#NAME> | String |
-|  tone  |  エージェントの口調(normal or kansai)  |  | String |
+|  tone  |  エージェントの口調(normal,kansai,koshu,dechu)  |  | String |
 |  age  |  エージェントの年齢  | <#AGE> | String |
 
 ##### addition
