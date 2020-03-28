@@ -120,6 +120,7 @@ additionでは応答をカスタマイズする設定が可能です。
 |  options  |  ユーザに示す発話候補  | String配列 |
 |  utterancePairs  |  発話ペアの配列  | utterancePairオブジェクトの配列 |
 |  ngwords  |  NGワードのリスト  | String配列 |
+|  unknownResponses  |  高スコアの回答がなかった際に利用する発話  | String配列 |
 
 ##### utterancePair
 utterancePairオブジェクトを利用して発話ペアを定義できます。
