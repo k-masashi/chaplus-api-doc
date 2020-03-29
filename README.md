@@ -2,7 +2,7 @@
 ## Chaplus APIとは？
 サービスに会話機能を手軽に導入することができるWeb API。チャットボットを始めとする『対話型』サービスに、雑談機能やQ&A機能を手軽に実装することができるAPIです。Chaplusは「Chat + Plus」を組み合わせた造語。
 
-[公式サイト](https://www.chaplus.jp/demo)
+[公式サイト](https://www.chaplus.jp)
 
 [DEMOページ](https://www.chaplus.jp/demo)
 
