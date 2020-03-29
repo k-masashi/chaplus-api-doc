@@ -1,6 +1,8 @@
 # Chaplus API β
 ## Chaplus APIとは？
-サービスに雑談機能を手軽に導入することができるWeb API。チャットボットを始めとする『対話型』サービスに、雑談機能を手軽に実装することができるAPIです。Chaplusは「Chat + Plus」を組み合わせた造語。
+サービスに会話機能を手軽に導入することができるWeb API。チャットボットを始めとする『対話型』サービスに、雑談機能やQ&A機能を手軽に実装することができるAPIです。Chaplusは「Chat + Plus」を組み合わせた造語。
+
+[公式サイト](https://www.chaplus.jp)
 
 [DEMOページ](https://www.chaplus.jp/demo)
 
@@ -64,8 +66,24 @@ Chaplus APIでは、応答するAPIの話者を「エージェント(Agent)」�
 
 APIから返される応答にエージェントの名前を含む場合は、設定した情報によって動的に名前や年齢が変更されます。口調は、「normal」(標準)か「kansai」（関西弁風）、「koshu」（甲州弁風）、「dechu」(デチュ語)を現在利用ができます。例えば「kansai」を設定している場合は、関西弁のような口調に変更されます。
 
+### 5. Q&A機能を手軽に構築
 
+Q&A機能をすばやく構築するための仕組みも提供します。質問と応答のペア、必要であればURLを指定して自動Q&Aシステムとして利用することが可能です。
 
+```json
+"qaSet": [
+    {
+        "tag": "A号棟",
+        "question": "レストランの料理はおいしいですか？",
+        "answer": "栄養バランスの良く、美味しく食べられる食事が用意されていますよ。",
+        "options": [
+            "A号棟のレストランの近くにトイレはありますか？",
+            "A号棟のレストランの営業時間は？"
+        ],
+        "url": "http://example.com"
+    }
+]
+```
 
 # 利用方法
 
@@ -73,209 +91,15 @@ APIから返される応答にエージェントの名前を含む場合は、�
 
 [登録ページ](https://www.chaplus.jp) より利用規約の確認と同意の上、APIの利用登録を実施します。
 
-## 2. WEB API 仕様
+## 2. APIを利用する
 
-### リクエスト
-METHOD: POST
+現在、Chaplusは下記の２つのエンドポイントを用意しています。
 
-#### エンドポイント
-https://www.chaplus.jp/v1/chat?apikey=APIKEY 
+- [雑談応答API](/ChatAPI.md)
+- [Q&A応答API](/QAAPI.md)
 
-API登録時に取得したAPIKEYをクエリパラメータに付与します。
+各エンドポイントの仕様については上記のそれぞれのDocをご参照ください。
 
-
-#### リクエストヘッダー
-
-|  Key  |  Value  |
-| ---- | ---- |
-|  Content-Type  |  application/json  |
-
-#### リクエストボディ
-Jsonでリクエストを記述します。
-
-##### リクエストパラメータ
-
-|  パラメータ  |  説明  |  型  |  必須  |
-| ---- | ---- | ---- | ---- |
-|  utterance  |  ユーザの発話  | String | ◯ |
-|  username  |  ユーザの名前(呼び名)  | String |  |
-|  agentState  |  エージェントの情報  | agentStateオブジェクト |  |
-|  addition  |  追加情報  | additionオブジェクト |  |
- 
-
-##### agentState
-agentStateでは下記を指定。応答に含まれる置き換え文字が設定した情報に書き換わります。 
-
-|  agentState  |  説明  | 置き換え記号 | 型 |
-| ---- | ---- | ---- | ---- |
-|  agentName  |  エージェントの名前  | <#NAME> | String |
-|  tone  |  エージェントの口調(normal,kansai,koshu,dechu)  |  | String |
-|  age  |  エージェントの年齢  | <#AGE> | String |
-
-##### addition
-additionでは応答をカスタマイズする設定が可能です。
-
-|  addition  |  説明  | 型 |
-| ---- | ---- | ---- |
-|  options  |  ユーザに示す発話候補  | String配列 |
-|  utterancePairs  |  発話ペアの配列  | utterancePairオブジェクトの配列 |
-|  ngwords  |  NGワードのリスト  | String配列 |
-|  unknownResponses  |  高スコアの回答がなかった際に利用する発話  | String配列 |
-
-##### utterancePair
-utterancePairオブジェクトを利用して発話ペアを定義できます。
-
-|  utterancePair  |  説明  | 型 |
-| ---- | ---- | ---- |
-|  utterance  |  ユーザの発話  | String |
-|  response  |  ユーザの発話に対する応答(カンマ区切りで複数可)  | String |
-
-utterancePairで指定された発話ペアは、Chaplus APIが行う応答と同じロジックで処理されます。登録された発話と近しい表現の発話がリクエストされた際、応答としてresponseを利用します。(表記揺れの考慮あり) responseに入れる値は、「,」で区切ることによって複数登録することができます。例えば、「こんにちは」に対して「ハロー,hello,こんちわ！」を登録した場合、３つの候補の内からランダムで応答が返されます。
-
-サンプル
-```json
-{
-    "utterance": "調子はどう？",
-    "username": "太郎",
-    "agentState":{
-        "agentName": "エージェント",
-        "tone": "kansai",
-        "age": "14歳"
-    }
-    "addition" {
-        "options":[
-            "疲れた",
-            "肩凝った"
-        ]
-        "ngwords" [
-            "ため息",
-            "やめてしまえ"
-        ]
-        "utterancePairs" [
-            {
-                "utterance": "肩凝った",
-                "response":"適度に運動しないとね"
-            },
-        ]
-    }
-}
-```
-
-curl サンプル
-```
-curl -v -H "Content-Type: application/json" -X POST -d '{"utterance":"調子はどう？","username":"太郎","agentState":{"agentName":"エージェント","tone":"kansai", "age":"20歳"},"addition":{"options":["疲れた","肩凝った"],"utterancePairs":[{"utterance":"肩凝った","response":"適度に運動しないとね"}]}}' https://www.chaplus.jp/v1/chat\?apikey\=<APIKEY>
-```
-
-
-### ステータスコード
-
-|  ステータス  |  説明  |
-| ---- | ---- |
-|  200  |  リクエスト成功  |
-|  400 Bad Request  |  リクエストに問題  |
-|  401 Unauthorized  |  認証エラー  |
-|  404 Not Found  |  存在しないエンドポイント  |
-|  500 Internal Server Error  |  サーバーのエラー  |
-
-サンプル
-```json
-{
-    "status": "Unauthorized Error",
-    "message": "invalid key"
-}
-```
-
-
-### レスポンス
-#### Json
-
-|  Key  |  説明  |  型  |
-| ---- | ---- | ---- |
-|  bestResponse  |  ユーザ発話に対する最もScoreの高い応答  |  responseオブジェクト  |
-|  responses  |  ユーザ発話に対する応答候補  |  responseオブジェクトの配列  |
-|  tokenized  |  分かち書きの結果 |  String配列  |
-|  options  |  次の発話候補(個別のResponseによらない) |  String配列  |
-
-optionsには、次にユーザが発話する際の参考になる「発話候補」が返されます。
-optionsの内容は、ユーザ発話やAPIの応答によって決まる内容と、時間帯によって決まる内容、APIリクエストでカスタマイズした内容の３種類が含まれます。
-
-##### response
-responseオブジェクトは以下の要素を含みます。
-
-|  response  |  説明  |  型  |
-| ---- | ---- | ---- |
-|  utterance  |  応答の発話文  |  String  |
-|  score  |  応答のScore(どれだけ尤もらしい応答か)  | Float  |
-|  url  |  応答と対応するURL(Defaultは空) |  String配列  |
-|  options  |  個別のresponseに対する次の発話候補(DefaultはNULL) |  String配列  |
-
-
-サンプル
-```json
-{
-    "utterance": "仕事終わりのビールは最高",
-    "bestResponse": {
-        "utterance": "適量でね",
-        "score": 1,
-        "url": "",
-        "options": null
-    },
-    "responses": [
-        {
-            "utterance": "適量でね",
-            "score": 1,
-            "url": "",
-            "options": null
-        },
-        {
-            "utterance": "今日も1日おつかれさま",
-            "score": 1,
-            "url": "",
-            "options": null
-        },
-        {
-            "utterance": "今日１日太郎はんががんばった証拠やね。",
-            "score": 0.7083,
-            "url": "",
-            "options": null
-        },
-        {
-            "utterance": "カンパーイ！",
-            "score": 0.7083,
-            "url": "",
-            "options": null
-        },
-        {
-            "utterance": "牛乳派です",
-            "score": 0.3333,
-            "url": "",
-            "options": null
-        },
-        {
-            "utterance": "偉い",
-            "score": 0.3333,
-            "url": "",
-            "options": null
-        }
-    ],
-    "tokenized": [
-        "名詞,サ変接続,*,*,*,*,仕事,シゴト,シゴト",
-        "動詞,自立,*,*,五段・ラ行,連用形,終わる,オワリ,オワリ",
-        "助詞,連体化,*,*,*,*,の,ノ,ノ",
-        "名詞,一般,*,*,*,*,ビール,ビール,ビール",
-        "助詞,係助詞,*,*,*,*,は,ハ,ワ",
-        "名詞,一般,*,*,*,*,最高,サイコウ,サイコー"
-    ],
-    "options": [
-        "疲れた",
-        "肩凝った",
-        "会社の人間関係は家まで持ち込みたくないですね",
-        "今日は大変な１日だったなー",
-        "明日はいい朝を迎えたいね",
-        "ヒーリング音楽流すと安らぎますよね"
-    ]
-}
-```
 
 # 利用上の諸注意
 [利用規約](https://www.chaplus.jp/agreement)をご確認の上、APIをご利用ください。
