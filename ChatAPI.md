@@ -57,6 +57,11 @@ APIから返される応答にエージェントの名前を含む場合は、�
 
 ## Web API仕様
 
+### 実装サンプル
+
+- [Slack Bot作成事例](https://qiita.com/maKunugi/items/6a6abf83ca27716541df)
+- [LINE Bot作成事例](https://qiita.com/maKunugi/items/e6fc7f51071ab3696d5f)
+
 ### リクエスト
 METHOD: POST
 
@@ -138,7 +143,7 @@ utterancePairで指定された発話ペアは、Chaplus APIが行う応答と�
         "utterancePairs" [
             {
                 "utterance": "肩凝った",
-                "response":"適度に運動しないとね"
+                "response":"適度に運動しないとね,定期的に肩を回そう！"
             },
         ]
     }
