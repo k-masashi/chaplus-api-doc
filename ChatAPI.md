@@ -59,8 +59,8 @@ APIから返される応答にエージェントの名前を含む場合は、�
 
 ### 実装サンプル
 
-- [Slack Bot作成事例](https://qiita.com/maKunugi/items/6a6abf83ca27716541df)
-- [LINE Bot作成事例](https://qiita.com/maKunugi/items/e6fc7f51071ab3696d5f)
+- [Slack Bot作成事例（GAS / JavaScript）](https://qiita.com/maKunugi/items/6a6abf83ca27716541df)
+- [LINE Bot作成事例（GAS / JavaScript）](https://qiita.com/maKunugi/items/e6fc7f51071ab3696d5f)
 
 ### リクエスト
 METHOD: POST
