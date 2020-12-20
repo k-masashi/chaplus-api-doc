@@ -27,11 +27,13 @@
 "utterancePairs":[
     {
         "utterance":"おはよう！",
-        "response":"今日も1日頑張って！"
+        "response":"今日も1日頑張って！",
+        "options":"顔洗ってスッキリ,朝は味噌汁だよね,今日も頑張る"
     },
     {
         "utterance":"こんにちは",
-        "response":"ハロー"
+        "response":"ハロー",
+        "options":"お腹減った,午後もがんばろう"
     }
 ]
 ```
@@ -118,6 +120,7 @@ utterancePairオブジェクトを利用して発話ペアを定義できます�
 | ---- | ---- | ---- |
 |  utterance  |  ユーザの発話  | String |
 |  response  |  ユーザの発話に対する応答(カンマ区切りで複数可)  | String |
+|  options  |  レスポンスを返す際に表示する発話候補(カンマ区切りで複数可)  | String |
 
 utterancePairで指定された発話ペアは、Chaplus APIが行う応答と同じロジックで処理されます。登録された発話と近しい表現の発話がリクエストされた際、応答としてresponseを利用します。(表記揺れの考慮あり) responseに入れる値は、「,」で区切ることによって複数登録することができます。例えば、「こんにちは」に対して「ハロー,hello,こんちわ！」を登録した場合、３つの候補の内からランダムで応答が返されます。
 
@@ -143,7 +146,8 @@ utterancePairで指定された発話ペアは、Chaplus APIが行う応答と�
         "utterancePairs" [
             {
                 "utterance": "肩凝った",
-                "response":"適度に運動しないとね,定期的に肩を回そう！"
+                "response":"適度に運動しないとね,定期的に肩を回そう！",
+                "options":"マッサージ行きたいな,ちょっと休もうかな"
             },
         ]
     }
@@ -152,7 +156,7 @@ utterancePairで指定された発話ペアは、Chaplus APIが行う応答と�
 
 curl サンプル
 ```
-curl -v -H "Content-Type: application/json" -X POST -d '{"utterance":"調子はどう？","username":"太郎","agentState":{"agentName":"エージェント","tone":"kansai", "age":"20歳"},"addition":{"options":["疲れた","肩凝った"],"utterancePairs":[{"utterance":"肩凝った","response":"適度に運動しないとね"}]}}' https://www.chaplus.jp/v1/chat\?apikey\=<APIKEY>
+curl -v -H "Content-Type: application/json" -X POST -d '{"utterance":"調子はどう？","username":"太郎","agentState":{"agentName":"エージェント","tone":"kansai", "age":"20歳"},"addition":{"options":["疲れた","肩凝った"],"utterancePairs":[{"utterance":"肩凝った","response":"適度に運動しないとね","options":"マッサージ行きたいな,ちょっと休もうかな"}]}}' https://www.chaplus.jp/v1/chat\?apikey\=<APIKEY>
 ```
 
 

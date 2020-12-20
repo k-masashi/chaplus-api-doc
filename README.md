@@ -38,11 +38,13 @@
 "utterancePairs":[
     {
         "utterance":"おはよう！",
-        "response":"今日も1日頑張って！"
+        "response":"今日も1日頑張って！",
+        "options":"顔洗ってスッキリ,朝は味噌汁だよね,今日も頑張る"
     },
     {
         "utterance":"こんにちは",
-        "response":"ハロー"
+        "response":"ハロー",
+        "options":"お腹減った,午後もがんばろう"
     }
 ]
 ```
