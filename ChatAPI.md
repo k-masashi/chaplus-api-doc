@@ -200,6 +200,7 @@ responseオブジェクトは以下の要素を含みます。
 |  utterance  |  応答の発話文  |  String  |
 |  score  |  応答のScore(どれだけ尤もらしい応答か)  | Float  |
 |  url  |  応答と対応するURL(Defaultは空) |  String配列  |
+|  useGpt2  |  GPT-2を用いた応答のみを返す(ベータ版) |  ブール値(true or false)  |
 |  options  |  個別のresponseに対する次の発話候補(DefaultはNULL) |  String配列  |
 
 
